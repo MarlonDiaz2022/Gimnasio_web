@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+
+	<header th:replace="plantilla/template :: header"></header>
+
+
+	<div class="container">
+
+		<div class="card bg-light">
+
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+			
+				<form th:action="@{/views/clientes/save}" th:object="${cliente}" method="post">
+					<fieldset>
+						<legend>REGISTRO DE NUEVO CLIENTE</legend>
+
+						<div class="form-group row">
+							<label class="col-md-2" for="id">id</label> <input type="text" 
+							th:field="*{id}"
+								id="id" class="form-control form-control-sm col-md-6"
+								placeholder="id"> <small></small>
+						</div>
+
+                          
+						<div class="form-group row">
+							 <!-- <input type="hidden" th:field="*{id}">  esto sirve para que entienda que el id es el mismo y no cree un nuevo registro, sino que lo actualice-->
+							 <label class="col-md-2" for="nombre">nombre</label> <input
+								type="text" th:field="*{nombre}" id="nombre" class="form-control"
+								placeholder="nombre"> <small></small>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-md-2" for="apellido">apellido</label> <input
+								type="text" th:field="*{apellido}" id="apellido" class="form-control"
+								placeholder="apellido"> <small></small>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-md-2" for="ciudad_id">ciudad:</label> <select
+								th:field="*{ciudad_id.id}">
+								
+								<option th:each="cd:${ciudad}"
+								
+								th:value="${cd.id}"
+								th:text="${cd.nombre}"
+								
+								/>
+
+							</select>
+
+						</div>
+
+						<small></small>
+ <div class="card-footer bg-dark">
+       
+		<input type="submit" class="btn btn-primary  btn-sm" value="Guardar"/>
+		
+		
+	</div>
+
+					</fieldset>
+				</form>
+				
+			</div>
+		
+
+      
+	</div>
+	</div>
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+
+</body>
+</html>
